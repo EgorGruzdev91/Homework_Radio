@@ -132,4 +132,37 @@ public class RadioTest {
         int actual = radio.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void setCurrentVolumeValid() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(50);
+
+        int expected = 50;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+   @Test
+   public void setCurrentVolumeNegativeMin() {
+       Radio radio = new Radio();
+       radio.setCurrentVolume(-10);
+
+       int expected = 0;
+       int actual = radio.getCurrentVolume();
+
+       Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setCurrentVolumeNegativeMax() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(102);
+
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
 }

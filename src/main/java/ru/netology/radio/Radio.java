@@ -25,10 +25,10 @@ public class Radio {
 
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (currentVolume < 0) {
+        if (newCurrentVolume < 0) {
             return;
         }
-        if (currentVolume > 100) {
+        if (newCurrentVolume > 100) {
             return;
         }
         currentVolume = newCurrentVolume;
@@ -53,12 +53,16 @@ public class Radio {
     public void increaseVolume() {      // увеличение громкости
         if (currentVolume < 100) {
             currentVolume++;
+        } else {
+            currentVolume = 100;
         }
     }
 
     public void reduceVolume() {        // уменьшение громкости
         if (currentVolume > 0) {
             currentVolume--;
+        } else {
+            currentVolume = 0;
         }
     }
 }
