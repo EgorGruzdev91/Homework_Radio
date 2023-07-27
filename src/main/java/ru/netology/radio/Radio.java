@@ -1,8 +1,23 @@
 package ru.netology.radio;
 
 public class Radio {
-    private int currentStation;
-    private int currentVolume;
+    private int minStation = 0;
+    private int maxStation = 9;
+    public int currentStation;
+
+    private int minVolume = 0;
+    private int maxVolume = 100;
+    public int currentVolume;
+
+    public Radio() {
+        this.minStation = minStation;
+        this.maxStation = maxStation;
+        this.currentStation = minStation;
+    }
+
+    public Radio(int size){
+        maxStation = minStation + size - 1;
+    }
 
 
     public int getCurrentStation() {
@@ -14,10 +29,10 @@ public class Radio {
     }
 
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0) {
+        if (newCurrentStation < minStation) {
             return;
         }
-        if (newCurrentStation > 9) {
+        if (newCurrentStation > maxStation) {
             return;
         }
         currentStation = newCurrentStation;
@@ -25,44 +40,40 @@ public class Radio {
 
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 100) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
         currentVolume = newCurrentVolume;
     }
 
     public void next() {                // следующая радиостанция
-        if (currentStation < 9) {
+        if (currentStation < maxStation) {
             currentStation++;
         } else {
-            currentStation = 0;
+            currentStation = minStation;
         }
     }
 
     public void prev() {               // предыдущая радиостанция
-        if (currentStation > 0) {
+        if (currentStation > minStation) {
             currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = maxStation;
         }
     }
 
     public void increaseVolume() {      // увеличение громкости
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume++;
-        } else {
-            currentVolume = 100;
         }
     }
 
     public void reduceVolume() {        // уменьшение громкости
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume--;
-        } else {
-            currentVolume = 0;
         }
     }
 }
